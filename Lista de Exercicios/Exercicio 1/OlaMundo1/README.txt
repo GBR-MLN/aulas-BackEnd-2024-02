@@ -1,0 +1,2 @@
+O código inicia uma classe pública chamada "Main", seguido pela criação do método "main". Dentro do método "main" existe um System.out.println
+na qual a função é exibir qualquer coisa que estiver entre os parenteses e as aspas no terminal em formato de String.
