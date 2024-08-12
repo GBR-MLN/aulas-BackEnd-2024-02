@@ -2,12 +2,12 @@ package com.mycompany.todolist;
 
 public class Tarefa {
     private String titulo;
-    private String descricao;
+    // private String descricao;
     private boolean completa;
 
     public Tarefa(String titulo, String descricao) {
         this.titulo = titulo;
-        this.descricao = descricao;
+        // this.descricao = descricao; 
         this.completa = false;
     }
 
