@@ -8,7 +8,7 @@ public class Caixa {
     private int id;
     private int fila;
 
-    Caixa(int id, int fila){
+    Caixa(int id, int fila) {
         this.id = id;
         this.fila = fila;
     }
@@ -30,46 +30,63 @@ public class Caixa {
     }
 
     private int randomNumber;
-    private LinkedList<Integer> caixa1 = new LinkedList<>();
-    private LinkedList<Integer> caixa2 = new LinkedList<>();
-    Cliente cliente;
+    private LinkedList<Cliente> caixa1 = new LinkedList<>();
+    private LinkedList<Cliente> caixa2 = new LinkedList<>();
 
     Random random = new Random();
+    Cliente cliente;
+    Cesta cesta;
+    Produto produto;
 
-    public void criarClienteFila() {
-        randomNumber = random.nextInt(4) + 1;
+    public void criarClienteFila(Cesta cesta1, Cesta cesta2, Cesta cesta3) {
+        randomNumber = random.nextInt(6) + 1;
 
         if (randomNumber == 1) {
-            cliente = new Cliente(1);
+            cliente = new Cliente(1, cesta1.getCesta1());
         } else if (randomNumber == 2) {
-            cliente = new Cliente(2);
+            cliente = new Cliente(2, cesta2.getCesta2());
         } else if (randomNumber == 3) {
-            cliente = new Cliente(1);
+            cliente = new Cliente(1, cesta3.getCesta3());
         } else if (randomNumber == 4) {
-            cliente = new Cliente(2);
-        } else {
-            cliente = new Cliente(1);
+            cliente = new Cliente(2, cesta1.getCesta1());
+        } else if (randomNumber == 5) {
+            cliente = new Cliente(1, cesta2.getCesta2());
+        } else if (randomNumber == 6) {
+            cliente = new Cliente(2, cesta3.getCesta3());
         }
 
-        return;
+        adicionarClienteCaixa(cliente);
     }
 
-    public void adicionarClienteCaixa1() {
-        criarClienteFila();
-        caixa1.add(cliente.getTipo());
+    public void adicionarClienteCaixa(Cliente cliente) {
+        criarClienteFila(cesta, cesta, cesta);
+        if (cliente.getTipo() == 1) {
+            caixa1.add(cliente);
+        } else if (cliente.getTipo() == 2) {
+            caixa2.add(cliente);
+        }
     }
 
-    public void adicionarClienteCaixa2() {
-        criarClienteFila();
-        caixa2.add(cliente.getTipo());
+    public int getCaixa1Size() {
+        return caixa1.size();
     }
 
-    public LinkedList<Integer> getLinkedList1() {
-        return caixa1;
+    public int getCaixa2Size() {
+        return caixa2.size();
     }
 
-    public LinkedList<Integer> getLinkedList2() {
-        return caixa2;
+    public String getProdutosClientesCaixa1() {
+
+        StringBuilder produtos = new StringBuilder();
+
+        for (Cliente cliente : caixa1) {
+            produtos.append("Cliente ").append(cliente.getTipo()).append(": ");
+            for (Produto produto : cesta.getProdutos()) {
+                produtos.append(produto.getNome()).append(",");
+            }
+            produtos.setLength(produtos.length() - 2);
+            produtos.append("\n");
+        }
+        return produtos.toString();
     }
-    
 }

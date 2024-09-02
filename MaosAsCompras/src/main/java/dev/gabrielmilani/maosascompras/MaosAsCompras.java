@@ -8,19 +8,24 @@ public class MaosAsCompras {
     public static void main(String[] args) {
         
         Timer timer = new Timer();
+        Caixa caixa1 = new Caixa(1, 0);
+        // Caixa caixa2 = new Caixa(2, 0);
 
         timer.schedule( new TimerTask() {
             public void run() {
-
-                Caixa caixa = new Caixa(1, 0);
                 
-                caixa.criarClienteFila();
-                caixa.adicionarClienteCaixa1();
+                caixa1.criarClienteFila(null, null, null);
+                // caixa2.adicionarClienteCaixa();  
 
-                System.out.println("Tipo do cliente: "+ caixa.cliente.getTipo());
-                
             }
-        }, 0, 30*1000);
+        }, 0, 10*1000);
+
+        timer.schedule( new TimerTask() {
+            public void run() {
+                System.out.println("Clientes e produtos caixa 1: " + caixa1.getProdutosClientesCaixa1());
+                // System.out.println("Tamanho linha caixa 2: " + caixa1.getCaixa2Size());
+            }
+        }, 0, 10*1000);
 
     }
 }

@@ -5,9 +5,9 @@ import java.util.Random;
 
 public class Cesta {
 
-    private LinkedList<String> cesta1 = new LinkedList<>();
-    private LinkedList<String> cesta2 = new LinkedList<>();
-    private LinkedList<String> cesta3 = new LinkedList<>();
+    private LinkedList<Produto> cesta1 = new LinkedList<>();
+    private LinkedList<Produto> cesta2 = new LinkedList<>();
+    private LinkedList<Produto> cesta3 = new LinkedList<>();
 
     private int randomnumber;
 
@@ -22,8 +22,42 @@ public class Cesta {
         randomnumber = random.nextInt(4) + 1;
 
         if (randomnumber == 1) {
-            cesta1.add(produto2.getNome());
+            cesta1.add(produto);
+            cesta2.add(produto);
+            cesta3.add(produto);
+        } else if (randomnumber == 2) {
+            cesta2.add(produto);
+            cesta2.add(produto);
+            cesta3.add(produto);
+        } else if (randomnumber == 3) {
+            cesta3.add(produto);
+            cesta2.add(produto);
+            cesta3.add(produto);
+        } else {
+            cesta1.add(produto);
+            cesta2.add(produto);
+            cesta3.add(produto);
         }
+    }
+
+    public LinkedList<Produto> getCesta1() {
+        return cesta1;
+    }
+
+    public LinkedList<Produto> getCesta2() {
+        return cesta2;
+    }
+
+    public LinkedList<Produto> getCesta3() {
+        return cesta3;
+    }
+
+    public LinkedList<Produto> getProdutos() {
+        LinkedList<Produto> produtos = new LinkedList<>();
+        produtos.addAll(cesta1);
+        produtos.addAll(cesta2);
+        produtos.addAll(cesta3);
+        return produtos;
     }
     
 }
